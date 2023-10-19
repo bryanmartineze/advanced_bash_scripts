@@ -1,0 +1,24 @@
+#!/bin/bash
+project=${1}
+branch=${2}
+project_dir="$(basename ${project} .git)"
+
+clone_project() {
+  if [ ! -d "/home/bob/git/${project_dir}" ]; then
+    cd /home/bob/git/
+    git clone ${project}
+  fi
+}
+
+find_files() {
+  find "." -type f | wc -l
+}
+
+git_checkout() {
+  cd ${project_dir}
+  git checkout ${branch}
+}
+
+clone_project
+find_files
+git_checkout
