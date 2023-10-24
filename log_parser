@@ -6,6 +6,5 @@ set -o pipefail
 logfile="/etc/logs/error.log"
 
 echo "Number of times each error message appears:"
-cat "${logfile}" | grep "ERROR" | sort  | uniq  -c
-
+cat "${logfile}" | grep "ERROR" | sort  | uniq  -c || { echo "Error encountered in pipe commands" >&2; exit1; }
 exit 0
